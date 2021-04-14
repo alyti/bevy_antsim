@@ -53,7 +53,7 @@ fn setup_menu(
             parent.spawn_bundle(TextBundle {
                 text: Text {
                     sections: vec![TextSection {
-                        value: "Play".to_string(),
+                        value: "Start".to_string(),
                         style: TextStyle {
                             font: asset_server.get_handle("fonts/FiraSans-Bold.ttf"),
                             font_size: 40.0,

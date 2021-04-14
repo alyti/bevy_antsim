@@ -1,17 +1,16 @@
-mod actions;
-mod audio;
 mod loading;
 mod menu;
-mod player;
+mod shapes;
+mod food;
+mod grid;
 
-use crate::actions::ActionsPlugin;
-use crate::audio::InternalAudioPlugin;
 use crate::loading::LoadingPlugin;
+use crate::shapes::ShapesPlugin;
 use crate::menu::MenuPlugin;
-use crate::player::PlayerPlugin;
+use crate::grid::GridPlugin;
+use crate::food::FoodPlugin;
 
 use bevy::app::AppBuilder;
-// use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 use bevy::prelude::*;
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
@@ -27,12 +26,10 @@ impl Plugin for GamePlugin {
     fn build(&self, app: &mut AppBuilder) {
         app.add_state(GameState::Loading)
             .add_plugin(LoadingPlugin)
-            .add_plugin(ActionsPlugin)
             .add_plugin(MenuPlugin)
-            .add_plugin(InternalAudioPlugin)
-            .add_plugin(PlayerPlugin)
-            // .add_plugin(FrameTimeDiagnosticsPlugin::default())
-            // .add_plugin(LogDiagnosticsPlugin::default())
+            .add_plugin(ShapesPlugin)
+            .add_plugin(GridPlugin)
+            .add_plugin(FoodPlugin)
             ;
     }
 }

@@ -1,7 +1,7 @@
 [package]
-name = "bevy_game" # ToDo
+name = "bevy_antsim"
 version = "0.1.0"
-authors = ["Niklas Eicker <git@nikl.me>"] # ToDo: you are the author ;)
+authors = ["Alyssa Awoo <alticodes@gmail.com>"]
 edition = "2018"
 
 [profile.dev]
@@ -14,6 +14,11 @@ default = [
     "bevy/render",
     "bevy/png",
     "game_plugin/default"
+]
+
+dynamic = [
+    "bevy/dynamic",
+    "game_plugin/dynamic"
 ]
 
 native = [

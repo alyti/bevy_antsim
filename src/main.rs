@@ -1,5 +1,5 @@
 // disable console opening on windows
-#![windows_subsystem = "windows"]
+// #![windows_subsystem = "windows"]
 
 #[cfg(target_arch = "wasm32")]
 use bevy_webgl2;
@@ -15,8 +15,8 @@ fn main() {
         .insert_resource(ClearColor(Color::rgb(0.4, 0.4, 0.4)))
         .insert_resource(WindowDescriptor {
             width: 800.,
-            height: 600.,
-            title: "Bevy game".to_string(), // ToDo
+            height: 800.,
+            title: "Ant Hive Simulation (just hexagons being bestagons for now)".to_string(),
             ..Default::default()
         })
         .add_plugins(DefaultPlugins)
