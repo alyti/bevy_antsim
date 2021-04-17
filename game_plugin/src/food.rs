@@ -34,7 +34,7 @@ impl Default for FoodBundle {
         Self {
             grid_entity: crate::grid::GridEntity(None),
             food: Food(1000.0, 1000.0),
-            timer: Timer::from_seconds(0.01, true),
+            timer: Timer::from_seconds(0.001, true),
         }
     }
 }
@@ -50,7 +50,7 @@ pub struct FoodSpawnerBundle {
 impl Default for FoodSpawnerBundle {
     fn default() -> Self {
         Self {
-            timer: Timer::from_seconds(0.1, true),
+            timer: Timer::from_seconds(0.001, true),
             food: Default::default(),
             transform: Default::default(),
             global_transform: Default::default(),
@@ -91,7 +91,7 @@ fn food_spawner_system(
             let mut nt = t.clone();
             nt.translation.x += pos.0;
             nt.translation.y += pos.1;
-            info!("Spawning food at {:?}", nt.translation);
+            // info!("Spawning food at {:?}", nt.translation);
 
             commands.spawn().insert_bundle(fb.clone()).insert(nt);
         }
@@ -106,7 +106,7 @@ fn debug_food_despawner(
     for (entity, mut timer, mut food) in query.iter_mut() {
         if timer.tick(time.delta()).just_finished() {
             if food.0 == 0.0 {
-                info!("Despawning {:?}", entity);
+                // info!("Despawning {:?}", entity);
                 commands.entity(entity).despawn();
             } else {
                 food.0 -= 10.0;

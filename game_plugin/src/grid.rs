@@ -46,7 +46,7 @@ fn maintain_grid(
                 .map(|(_, h)| h)
                 .collect();
 
-            info!("Removing entity {:?} grid handle {:?}", entity, related);
+            // info!("Removing entity {:?} grid handle {:?}", entity, related);
             for r in related {
                 g.remove(r);
             }
