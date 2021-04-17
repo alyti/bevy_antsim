@@ -1,4 +1,4 @@
-use crate::food::Food;
+use crate::{ant::Ant, colony::Colony, food::Food};
 use bevy_prototype_lyon::prelude::*;
 
 use crate::GameState;
@@ -13,7 +13,10 @@ impl Plugin for ShapesPlugin {
                 SystemSet::on_enter(GameState::Playing).with_system(spawn_camera.system()),
             )
             .add_system_set(
-                SystemSet::on_update(GameState::Playing).with_system(food_shapes.system()),
+                SystemSet::on_update(GameState::Playing)
+                    .with_system(food_shapes.system())
+                    .with_system(colony_shapes.system())
+                    .with_system(ant_shapes.system()),
             );
     }
 }
@@ -39,16 +42,58 @@ fn food_shapes(
             };
             commands.entity(e).insert_bundle(GeometryBuilder::build_as(
                 &shape,
-                ShapeColors::outlined(
-                    {
-                        if rand::random() {
-                            Color::CYAN
-                        } else {
-                            Color::PINK
-                        }
-                    },
-                    Color::AQUAMARINE,
-                ),
+                ShapeColors::outlined(Color::PINK, Color::AQUAMARINE),
+                DrawMode::Outlined {
+                    fill_options: FillOptions::default(),
+                    outline_options: StrokeOptions::default().with_line_width(1.0),
+                },
+                *t,
+            ));
+        }
+    }
+}
+
+fn colony_shapes(
+    query: Query<(Entity, &Transform, Option<&Handle<Mesh>>), Changed<Colony>>,
+    mut commands: Commands,
+) {
+    for (e, t, om) in query.iter() {
+        if om.is_some() {
+            // TODO: Some animation for colonies involving time?
+        } else {
+            let shape = shapes::RegularPolygon {
+                sides: 12,
+                feature: shapes::RegularPolygonFeature::Radius(30.0),
+                ..shapes::RegularPolygon::default()
+            };
+            commands.entity(e).insert_bundle(GeometryBuilder::build_as(
+                &shape,
+                ShapeColors::outlined(Color::CYAN, Color::AQUAMARINE),
+                DrawMode::Outlined {
+                    fill_options: FillOptions::default(),
+                    outline_options: StrokeOptions::default().with_line_width(1.0),
+                },
+                *t,
+            ));
+        }
+    }
+}
+
+fn ant_shapes(
+    query: Query<(Entity, &Transform, Option<&Handle<Mesh>>), Changed<Ant>>,
+    mut commands: Commands,
+) {
+    for (e, t, om) in query.iter() {
+        if om.is_some() {
+            // TODO: Some animation for ants involving time?
+        } else {
+            let shape = shapes::Circle {
+                radius: 5.0,
+                center: Vec2::ZERO,
+            };
+            commands.entity(e).insert_bundle(GeometryBuilder::build_as(
+                &shape,
+                ShapeColors::outlined(Color::AZURE, Color::AQUAMARINE),
                 DrawMode::Outlined {
                     fill_options: FillOptions::default(),
                     outline_options: StrokeOptions::default().with_line_width(1.0),

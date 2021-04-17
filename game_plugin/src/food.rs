@@ -33,8 +33,8 @@ impl Default for FoodBundle {
     fn default() -> Self {
         Self {
             grid_entity: crate::grid::GridEntity(None),
-            food: Food(1000.0, 1000.0),
-            timer: Timer::from_seconds(0.001, true),
+            food: Food(250.0, 250.0),
+            timer: Timer::from_seconds(30.0, true),
         }
     }
 }
@@ -50,7 +50,7 @@ pub struct FoodSpawnerBundle {
 impl Default for FoodSpawnerBundle {
     fn default() -> Self {
         Self {
-            timer: Timer::from_seconds(0.001, true),
+            timer: Timer::from_seconds(30.0, true),
             food: Default::default(),
             transform: Default::default(),
             global_transform: Default::default(),
