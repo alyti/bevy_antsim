@@ -17,7 +17,6 @@ impl Plugin for LoadingPlugin {
 }
 
 pub struct LoadingState {
-    textures: Vec<HandleUntyped>,
     fonts: Vec<HandleUntyped>,
 }
 
@@ -25,19 +24,11 @@ pub struct FontAssets {
     pub fira_sans: Handle<Font>,
 }
 
-pub struct TextureAssets {
-    pub texture_bevy: Handle<Texture>,
-}
-
 fn start_loading(mut commands: Commands, asset_server: Res<AssetServer>) {
     let mut fonts: Vec<HandleUntyped> = vec![];
     fonts.push(asset_server.load_untyped(PATHS.fira_sans));
 
-    let mut textures: Vec<HandleUntyped> = vec![];
-    textures.push(asset_server.load_untyped(PATHS.texture_bevy));
-
     commands.insert_resource(LoadingState {
-        textures,
         fonts,
     });
 }
@@ -53,18 +44,9 @@ fn check_state(
     {
         return;
     }
-    if LoadState::Loaded
-        != asset_server.get_group_load_state(loading_state.textures.iter().map(|handle| handle.id))
-    {
-        return;
-    }
 
     commands.insert_resource(FontAssets {
         fira_sans: asset_server.get_handle(PATHS.fira_sans),
-    });
-
-    commands.insert_resource(TextureAssets {
-        texture_bevy: asset_server.get_handle(PATHS.texture_bevy),
     });
 
     state.set(GameState::Menu).unwrap();
