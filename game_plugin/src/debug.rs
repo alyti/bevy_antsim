@@ -1,6 +1,4 @@
-use bevy::{
-    prelude::*,
-};
+use bevy::prelude::*;
 use bevy_input_actionmap::InputMap;
 use bevy_inspector_egui::{WorldInspectorParams, WorldInspectorPlugin};
 
@@ -19,7 +17,10 @@ impl Plugin for DebugPlugin {
     }
 }
 
-fn toggle_inspector(actions: Res<InputMap<Action>>, mut inspector_params: ResMut<WorldInspectorParams>) {
+fn toggle_inspector(
+    actions: Res<InputMap<Action>>,
+    mut inspector_params: ResMut<WorldInspectorParams>,
+) {
     if actions.just_active(Action::ToggleInspector) {
         inspector_params.enabled = !inspector_params.enabled;
     }

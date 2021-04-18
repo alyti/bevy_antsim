@@ -71,7 +71,9 @@ fn ant_spawner_system(
             continue;
         }
         // TODO: Improve this cringe
-        let to_spawn = (colony.ants_per_second / time.delta_seconds_f64()).ceil().max(colony.max_population as f64) as u32;
+        let to_spawn = (colony.ants_per_second / time.delta_seconds_f64())
+            .ceil()
+            .max(colony.max_population as f64) as u32;
         for _ in 0..to_spawn {
             let mut nt = t.clone();
             let angle = rand::random::<f32>();

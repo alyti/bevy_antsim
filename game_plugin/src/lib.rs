@@ -37,7 +37,7 @@ impl Plugin for GamePlugin {
             .add_plugin(ShapesPlugin)
             .add_plugin(GridPlugin)
             .add_plugin(FoodPlugin);
-            //.add_plugin(ColonyPlugin)
-            //.add_plugin(AntPlugin);
+        //.add_plugin(ColonyPlugin)
+        //.add_plugin(AntPlugin);
     }
 }

@@ -1,8 +1,12 @@
 use crate::shapes::WorldCamera;
-use bevy::{input::{
+use bevy::{
+    input::{
         mouse::{MouseMotion, MouseWheel},
         system::exit_on_esc_system,
-    }, prelude::*, render::camera::{Camera, OrthographicProjection}};
+    },
+    prelude::*,
+    render::camera::{Camera, OrthographicProjection},
+};
 use bevy_egui::EguiContext;
 use bevy_input_actionmap::{ActionPlugin, InputMap};
 

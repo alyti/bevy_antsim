@@ -28,9 +28,7 @@ fn start_loading(mut commands: Commands, asset_server: Res<AssetServer>) {
     let mut fonts: Vec<HandleUntyped> = vec![];
     fonts.push(asset_server.load_untyped(PATHS.fira_sans));
 
-    commands.insert_resource(LoadingState {
-        fonts,
-    });
+    commands.insert_resource(LoadingState { fonts });
 }
 
 fn check_state(

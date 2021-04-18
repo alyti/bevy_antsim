@@ -22,7 +22,12 @@ impl Default for PauseCooldown {
     }
 }
 
-fn toggle_pause_state(time: Res<Time>, mut cd: ResMut<PauseCooldown>, action: Res<InputMap<Action>>, mut state: ResMut<State<GameState>>) {
+fn toggle_pause_state(
+    time: Res<Time>,
+    mut cd: ResMut<PauseCooldown>,
+    action: Res<InputMap<Action>>,
+    mut state: ResMut<State<GameState>>,
+) {
     if !cd.0.tick(time.delta()).finished() {
         return;
     }
