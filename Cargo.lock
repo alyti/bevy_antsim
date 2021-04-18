@@ -417,6 +417,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_input_actionmap"
+version = "0.1.0"
+source = "git+https://github.com/lightsoutgames/bevy_input_actionmap#2da54aeddd7dc492fcef6aa8e823792ea0b1dca6"
+dependencies = [
+ "bevy",
+]
+
+[[package]]
 name = "bevy_internal"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1290,7 +1298,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9538579d6266f906a7f887fef957a3dbfe53a00e07671340e3e732c20979cc52"
 dependencies = [
  "mint",
- "serde",
  "slotmap",
 ]
 
@@ -1398,11 +1405,11 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "bevy-inspector-egui",
+ "bevy_egui",
+ "bevy_input_actionmap",
  "bevy_prototype_lyon",
  "flat_spatial",
  "rand",
- "serde",
- "serde_json",
 ]
 
 [[package]]
@@ -2708,9 +2715,6 @@ name = "slotmap"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c46a3482db8f247956e464d783693ece164ca056e6e67563ee5505bdb86452cd"
-dependencies = [
- "serde",
-]
 
 [[package]]
 name = "smallvec"

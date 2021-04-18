@@ -24,10 +24,10 @@ native = [
 
 [dependencies]
 bevy = { version = "0.5.0", default-features = false }
+flat_spatial = { version = "0.3.7" }
 rand = "0.8.3"
 
-flat_spatial = { version = "0.3.7", features = ["serde"] }
+bevy_egui = "*"
 bevy-inspector-egui = "*"
 bevy_prototype_lyon = "0.3"
-serde = "*"
-serde_json = "1.0" 
+bevy_input_actionmap = { git = "https://github.com/lightsoutgames/bevy_input_actionmap" }

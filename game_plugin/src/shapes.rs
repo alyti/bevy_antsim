@@ -20,8 +20,11 @@ impl Plugin for ShapesPlugin {
             );
     }
 }
+
+pub struct WorldCamera;
+
 fn spawn_camera(mut commands: Commands) {
-    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
+    commands.spawn_bundle(OrthographicCameraBundle::new_2d()).insert(WorldCamera);
 }
 
 fn food_shapes(
