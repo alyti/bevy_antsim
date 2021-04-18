@@ -24,10 +24,13 @@ impl Plugin for ShapesPlugin {
 pub struct WorldCamera;
 
 fn spawn_camera(mut commands: Commands) {
-    commands.spawn_bundle(OrthographicCameraBundle::new_2d()).insert(WorldCamera);
+    commands
+        .spawn_bundle(OrthographicCameraBundle::new_2d())
+        .insert(WorldCamera);
 }
 
 fn food_shapes(
+    time: Res<Time>,
     mut query: Query<(Entity, &mut Transform, &Food, Option<&Handle<Mesh>>), Changed<Food>>,
     mut commands: Commands,
 ) {
@@ -37,6 +40,7 @@ fn food_shapes(
                 continue;
             }
             t.scale = Vec3::ZERO.lerp(Vec3::ONE, f.0 / f.1);
+            t.rotation = Quat::from_rotation_z((f.0 * 180.0) + time.seconds_since_startup() as f32);
         } else {
             let shape = shapes::RegularPolygon {
                 sides: 6,
@@ -45,7 +49,16 @@ fn food_shapes(
             };
             commands.entity(e).insert_bundle(GeometryBuilder::build_as(
                 &shape,
-                ShapeColors::outlined(Color::PINK, Color::AQUAMARINE),
+                ShapeColors::outlined(
+                    {
+                        if rand::random() {
+                            Color::PINK
+                        } else {
+                            Color::CYAN
+                        }
+                    },
+                    Color::AQUAMARINE,
+                ),
                 DrawMode::Outlined {
                     fill_options: FillOptions::default(),
                     outline_options: StrokeOptions::default().with_line_width(1.0),
