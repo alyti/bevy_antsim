@@ -58,11 +58,15 @@ impl Default for FoodSpawnerBundle {
     }
 }
 
-fn setup_system(mut commands: Commands) {
+fn setup_system(mut commands: Commands, windows: Res<Windows>) {
+    let win = windows.get_primary().unwrap();
+    let (h, w) = (win.height(), win.width());
+    let (off_h, off_w) = (h / 2.0 - h, w / 2.0 - w);
+
     commands
         .spawn()
         .insert_bundle(FoodSpawnerBundle::default())
-        .insert(RandomisePosition([-800.0, -800.0, 1600.0, 1600.0]));
+        .insert(RandomisePosition([off_w, off_h, w, h]));
 }
 
 fn food_spawner_system(

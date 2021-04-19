@@ -8,7 +8,7 @@ pub struct ShapesPlugin;
 
 impl Plugin for ShapesPlugin {
     fn build(&self, app: &mut AppBuilder) {
-        app.add_plugin(ShapePlugin)
+        app
             .add_system_set(
                 SystemSet::on_enter(GameState::Playing).with_system(spawn_camera.system()),
             )

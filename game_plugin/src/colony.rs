@@ -29,7 +29,7 @@ impl Default for Colony {
     fn default() -> Self {
         Self {
             max_range: 300.0,
-            max_population: 500,
+            max_population: 100,
             cur_population: 0,
             ants_per_second: 10.0,
         }
